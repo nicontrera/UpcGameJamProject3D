@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://vkrxx10djb3b"]
+
+[ext_resource type="Script" uid="uid://bjus4uyid7o5r" path="res://player_char_3d.gd" id="1_lw5dg"]
+[ext_resource type="PackedScene" uid="uid://i0fxj4l11fk6" path="res://kaykit_character_pack_skeletons/Characters/gltf/Skeleton_Minion.glb" id="2_lw5dg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lw5dg"]
+radius = 0.36865234
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lw5dg"]
+
+[node name="Player3D" type="CharacterBody3D" unique_id=1070524892]
+script = ExtResource("1_lw5dg")
+
+[node name="Skeleton_Minion" parent="." unique_id=533948411 instance=ExtResource("2_lw5dg")]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1974780619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.956288, 0)
+shape = SubResource("CapsuleShape3D_lw5dg")
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=1480625855]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.87888384, -0.4770361, 0, 0.4770361, 0.87888384, 0, 1.4598414, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=1934342928]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+shape = SubResource("SphereShape3D_lw5dg")
+spring_length = 8.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=487369942]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999994, 0, 0, 0)
