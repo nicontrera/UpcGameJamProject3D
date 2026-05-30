@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="UpcGameJam3DProject"
-run/main_scene="uid://jhn1g8xd4bd"
+run/main_scene="uid://ymgawavht0ed"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

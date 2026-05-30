@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://ymgawavht0ed"]
+
+[ext_resource type="Script" uid="uid://h2m7fmn7k0k8" path="res://main_menu.gd" id="1_brnl1"]
+
+[node name="MainMenu" type="Control" unique_id=1859403000]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_brnl1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1245964574]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HostButton" type="Button" parent="VBoxContainer" unique_id=1822480221]
+layout_mode = 2
+text = "Start Host"
+
+[node name="ClientButton" type="Button" parent="VBoxContainer" unique_id=1553123458]
+layout_mode = 2
+text = "Start Client"
+
+[node name="IPInput" type="LineEdit" parent="VBoxContainer" unique_id=704871327]
+visible = false
+layout_mode = 2
+text = "127.0.0.1"
+
+[node name="JoinButton" type="Button" parent="VBoxContainer" unique_id=1986569513]
+visible = false
+layout_mode = 2
+text = "Join"
+
+[connection signal="pressed" from="VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ClientButton" to="." method="_on_client_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]

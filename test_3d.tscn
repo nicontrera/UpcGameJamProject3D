@@ -1,11 +1,51 @@
 [gd_scene format=3 uid="uid://jhn1g8xd4bd"]
 
-[ext_resource type="PackedScene" uid="uid://cnedxfn2pxh2t" path="res://charController/level/level.tscn" id="2_0h7nl"]
+[ext_resource type="PackedScene" uid="uid://cnedxfn2pxh2t" path="res://kaykit_character_pack_skeletons/level/level.tscn" id="2_0h7nl"]
 [ext_resource type="PackedScene" uid="uid://vkrxx10djb3b" path="res://player_char_3d.tscn" id="2_mer1j"]
+[ext_resource type="PackedScene" uid="uid://kj5mcyoudn2b" path="res://scenes/rising_floor.tscn" id="2_s6xjt"]
+[ext_resource type="PackedScene" uid="uid://bg82ewhljgl7r" path="res://goal_box.tscn" id="3_670pf"]
+[ext_resource type="PackedScene" uid="uid://ymgawavht0ed" path="res://scripts/main_menu.tscn" id="3_mer1j"]
 
-[node name="Node3D" type="Node3D" unique_id=156521157]
+[node name="Test3D" type="Node3D" unique_id=156521157]
 
-[node name="Player3D" parent="." unique_id=1070524892 instance=ExtResource("2_mer1j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06702566, 2.6458501e-05, -37.426933)
+[node name="LevelContainer" type="Node3D" parent="." unique_id=2040029232]
 
-[node name="Level" parent="." unique_id=446413711 instance=ExtResource("2_0h7nl")]
+[node name="Level" parent="LevelContainer" unique_id=446413711 instance=ExtResource("2_0h7nl")]
+
+[node name="RisingFloor" parent="LevelContainer" unique_id=147277349 instance=ExtResource("2_s6xjt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22.21893, -20.391752)
+rise_speed = 1.5
+
+[node name="Goal" parent="LevelContainer" unique_id=1932699964 instance=ExtResource("3_670pf")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.1293216, 9, -20)
+
+[node name="PlayersContainer" type="Node3D" parent="." unique_id=528205920]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, -37)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=647494367]
+_spawnable_scenes = PackedStringArray("uid://vkrxx10djb3b")
+spawn_path = NodePath("../PlayersContainer")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1513306794]
+
+[node name="MainMenu" parent="UI" unique_id=1859403000 node_paths=PackedStringArray("players_container") instance=ExtResource("3_mer1j")]
+player_scene = ExtResource("2_mer1j")
+players_container = NodePath("../../PlayersContainer")
+
+[node name="WinUI" type="CanvasLayer" parent="." unique_id=950524396]
+visible = false
+
+[node name="Label" type="Label" parent="WinUI" unique_id=1085665049]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.5
+offset_top = -44.0
+offset_right = 188.5
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Player Wins!"
